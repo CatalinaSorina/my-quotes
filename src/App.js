@@ -1,6 +1,7 @@
 import React from 'react';
-import './App.css';
+import { connect } from "react-redux";
 import Quote from "./components/Quote";
+import './App.css';
 
 class App extends React.Component {
   render(){
@@ -13,4 +14,10 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    data: state
+  };
+};
+
+export default connect(mapStateToProps)(App);
