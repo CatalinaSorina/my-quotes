@@ -1,3 +1,5 @@
+import * as actionTypes from "../actions/actionTypes";
+
 const initialState={
     quote:"",
     isFetching: false,
@@ -6,19 +8,19 @@ const initialState={
 
 const asyncReducer = (state=initialState,action) => {
     switch(action.type){
-        case "FETCH_QUOTE":
+        case actionTypes.FETCH_QUOTE:
             return Object.assign({},state,{
                 isFetching: true,
                 quote:"",
                 isError: false
             });
-        case "FETCHED_QUOTE":
+        case actionTypes.FETCHED_QUOTE:
             return Object.assign({},state,{
                 quote:action.data,
                 isFetching: false,
                 isError: false
             });
-        case "ERROR_MESSAGE":
+        case actionTypes.ERROR_MESSAGE:
             return Object.assign({},state,{
                 isError: true,
                 isFetching: false
