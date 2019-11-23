@@ -12,6 +12,14 @@ html {
   background: transparent;
   border: 0.2rem dotted rgba(0, 162, 255, 0.747);
   color: rgba(0, 162, 255, 0.747);
+  transition: 0.5s all;
+}
+
+.App-button:hover {
+  background: rgba(0, 162, 255, 0.747);
+  color: #282c34;
+  border-color: #282c34;
+  cursor: pointer;
 }
 
 .App-loading {
