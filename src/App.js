@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { thunkActionCreator } from "./store/actions/fetchAction";
 import Quote from "./components/Quote";
 import "./App.css";
+import { RingLoader } from "react-spinners";
 
 function App() {
   const data = useSelector(state => state);
@@ -16,7 +17,9 @@ function App() {
       >
         Generate an SMARTASS programming quote
       </button>
-      {data.isFetching && <h3>Loading...</h3>}
+      {data.isFetching && (
+        <div className="App-loading"><RingLoader color={"aliceblue"} /></div>
+      )}
       {data.isError && data.quote && (
         <h3 className="App-error">{data.quote}</h3>
       )}
