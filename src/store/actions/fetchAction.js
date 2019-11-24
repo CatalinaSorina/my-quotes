@@ -1,4 +1,5 @@
 import * as actionTypes from "./actionTypes";
+import axios from "axios";
 
 export const fetchQuote = () => {
   return {
@@ -20,16 +21,34 @@ export const errorMessage = msg => {
   };
 };
 
-export const thunkActionCreator = () => dispatch => {
-  dispatch(fetchQuote());
-  fetch("https://programming-quotes-api.herokuapp.com/quotes/random")
-    .then(data => data.json())
-    .then(data => {
-      return !data.en
-        ? dispatch(errorMessage("Wrong data !"))
-        : dispatch(receiveQuote(data.en));
-    })
-    .catch(error => dispatch(errorMessage()));
+export const thunkActionCreator = () => async dispatch => {
+  try {
+    dispatch(fetchQuote());
+    const { data } = await axios.get(
+      "https://programming-quotes-api.herokuapp.com/quotes/random"
+    );
+    dispatch(receiveQuote(data.en));
+  } catch (error) {
+    dispatch(errorMessage(error.message));
+  }
+
+  // axios
+  //   .get("https://programming-quotes-api.herokuapp.com/quotes/random")
+  //   .then(res => res.data)
+  //   .then(data => {
+  //     dispatch(fetchQuote());
+  //     dispatch(receiveQuote(data.en));
+  //   })
+  //   .catch(error => dispatch(errorMessage(error.message)));
+
+  // fetch("https://programming-quotes-api.herokuapp.com/quotes/random")
+  //   .then(data => data.json())
+  //   .then(data => {
+  //     return !data.en
+  //       ? dispatch(errorMessage("Wrong data !"))
+  //       : dispatch(receiveQuote(data.en));
+  //   })
+  //   .catch(error => dispatch(errorMessage()));
 };
 
 // export const thunkActionCreator = () => async dispatch => {
