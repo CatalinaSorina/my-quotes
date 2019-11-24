@@ -1,0 +1,3 @@
+export const FETCH_QUOTE = "FETCH_QUOTE";
+export const FETCHED_QUOTE = "FETCHED_QUOTE";
+export const ERROR_MESSAGE = "ERROR_MESSAGE";
